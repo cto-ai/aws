@@ -1,0 +1,42 @@
+version: "1"
+ops:
+  - name: # Unique identifier for your op (required)
+      aws
+    description: # Short description for what your op does (required)
+      A user-friendly interactive command line user interface to build and run an AWS CLI command
+    public: # Determines whether this version of the op is visible to other people
+      true
+    sourceCodeURL: ""
+    run: # Command that is executed when op is started ("npm start", "./start_script.sh", etc.) (required)
+      npx ts-node /ops/src/index.ts
+    env:
+      # Provide required environment variables for your op; to access, use the platform specific API, e.g. `process.env` for NodeJS
+      # To use environment variables from the Host, use the $ prefix:
+      - TERM=xterm-256color
+      - GITHUB_TEST_TOKEN=$GITHUB_TEST_TOKEN
+      - GITHUB_TEST_REPO_URL=$GITHUB_TEST_REPO_URL
+      - TEAM_NAME=$TEAM_NAME
+    src: # Whitelist files and folders to be included in the published op's WORKDIR
+      - Dockerfile
+      - src
+      - package.json
+      - .dockerignore
+      - tsconfig.json
+    mountCwd: # If set to `true`, binds the host's current working directory to `/cwd`; default value: `false` - working directory `/ops`
+      false
+    mountHome: # If set to `true`, binds the host's home directory to `/root`; default value: `false`
+      false
+    bind: # Bind additional volumes; trail the string accordingly to configure permissions for either read-only (:ro) or write (:w) access (example: ~/tmp:/root/tmp will bind lefthand directory in host to righthand directory in ops)
+      - /tmp:/tmp
+      - ~/.ssh:/root/.ssh
+      - ~/.ops/cto.ai/github:/root/.ops/cto.ai/github
+    port: # Map ports for your op container
+      - 3000:3000
+    help: # Configure the output for when your op is run with `op --help` or `op -h`
+      usage: "all commands and arguments available from the aws cli and are piped through as arguments. i.e. this is possible `ops run aws ec2 reate-vpc`"
+      arguments:
+        "ec2": "equivalent to running `aws ec2`"
+        "...": "all commands available from AWS CLI"
+      options:
+        help: "shows help content"
+        powermode: "power-user mode, pipes full command into aws cli (for use in remote workflows)"
