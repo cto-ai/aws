@@ -1,17 +1,17 @@
-# 🛠 CTO.ai Interactive AWS CLI Op 🚀
+# 🚀 CTO.ai - Official Op - AWS 🚀
 
-A user-friendly interactive command line user interface to build and run an AWS CLI command.
-
-![AWS Op](./screens/aws.png)
+An interactive command line to use the AWS CLI.
 
 ## Requirements
 
-To run this or any other Op, install the [Ops Platform.](https://cto.ai/platform). Find more information about how to run and build Ops via the [Platform Documentation](https://cto.ai/docs/overview)
+To run this or any other Op, install the [Ops Platform.](https://cto.ai/platform).
 
-This Op also requires credentials from AWS to run. Here's what you'll need before running this Op the first time:
+Find information about how to run and build Ops via the [Ops Platform Documentation](https://cto.ai/docs/overview)
 
-- **AWS Access Key Id**: Generate via AWS Management Console > Security Credentials > Access Keys
-- **AWS Access Key Secret**: Generate via AWS Management Console > Security Credentials > Access Keys
+This Op also requires AWS credentials to work with your account. Here's what you'll need before running this Op the first time:
+
+- **AWS Access Key Id**: Generate via: `AWS Management Console` -> `Security Credentials` -> `Access Keys`
+- **AWS Access Key Secret**: Generate via: `AWS Management Console` -> `Security Credentials` -> `Access Keys`
 
 ## Usage
 
