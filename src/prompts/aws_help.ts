@@ -16,7 +16,7 @@ export const awsPromptLoop = async (
     async (result: manObj) => {
       const metadata = {
         awsHelp: `aws ${service}${command} help`,
-        isDone: false
+        isDone: false,
       }
       track(metadata)
 
