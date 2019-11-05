@@ -4,7 +4,7 @@ import { manObj } from '../types/aws'
 import { checkForCommands } from '../utils/helpers'
 import { BACK_COMMAND } from '../constants/aws'
 import { outputAWS } from '../output'
-import { track } from '../utils/track'
+import { track, getTotalTime } from '../utils/track'
 
 // recursive solution for aws cli loop
 export const awsPromptLoop = async (
@@ -14,6 +14,7 @@ export const awsPromptLoop = async (
 ) => {
   return execMan(`aws ${service}${command} help`).then(
     async (result: manObj) => {
+      let commandhistory = `aws ${service}${command}`
       const metadata = {
         awsHelp: `aws ${service}${command} help`,
         isDone: false,
@@ -28,7 +29,15 @@ export const awsPromptLoop = async (
         return awsPromptLoop(service, history.pop() || '', history)
       }
       // Recursive exit condition
+
       if (!output) {
+        const totalTime = getTotalTime()
+        const metadata = {
+          totalTime: `${totalTime} seconds`,
+          isDone: true,
+          awsHelp: commandhistory,
+        }
+        track(metadata)
         return newCommand
       }
       history.push(command)

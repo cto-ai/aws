@@ -5,7 +5,7 @@ import { awsPromptLoop } from './prompts/aws_help'
 import { awsSetup } from './utils/awsCreds'
 import { execPowerMode } from './utils/powerUser'
 import { argv } from './types/argvs'
-import { track, startTimer, endTimer } from './utils/track'
+import { track, startTimer, getTotalTime } from './utils/track'
 
 const logo = `█▀▀ ▀▀█▀▀ █▀▀█   █▀▀█ ░▀░   █▀▀█ █░░░█ █▀▀   █▀▀█ █▀▀█
 █░░ ░░█░░ █░░█   █▄▄█ ▀█▀   █▄▄█ █▄█▄█ ▀▀█   █░░█ █░░█
@@ -77,16 +77,8 @@ const main = async () => {
   )
   try {
     await createPipeline({})
-    const endTime = endTimer()
-    const totalTime = endTime - startTime
-    const metadata = {
-      totalTime: `${totalTime} seconds`,
-      isDone: true,
-    }
-    track(metadata)
   } catch (err) {
-    const endTime = endTimer()
-    const totalTime = endTime - startTime
+    const totalTime = getTotalTime()
     const metadata = {
       totalTime: `${totalTime} seconds`,
       error: err,

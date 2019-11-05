@@ -22,15 +22,26 @@ export const track = async (metadata: metadata) => {
     trackedData['command'] = trackedData.awsHelp
       .split(' ')
       .filter(el => el !== '')
+    trackedData['powerUserArgs'] = ['aws', ...sdk.yargs.argv._]
     delete trackedData.awsHelp
   }
   sdk.track(['track', 'aws'], trackedData)
 }
 
+let startTime
+let endTime
+
 export const startTimer = (): number => {
-  return process.hrtime()[0]
+  startTime = process.hrtime()[0]
+  return startTime
 }
 
 export const endTimer = (): number => {
-  return process.hrtime()[0]
+  endTime = process.hrtime()[0]
+  return endTime
+}
+
+export const getTotalTime = (): number => {
+  endTimer()
+  return endTime - startTime
 }
