@@ -25,10 +25,16 @@ export const setManObj = (manStr: string, headers: string[]): manObj => {
 }
 
 const getHeaders = (man: string): string[] => {
-  const arr = man.match(HEADER_REGEX)
-  const headers = arr.map(current => current.replace('\n', ''))
-  const filteredHeaders = headers.filter(header => header !== 'NAME')
-  return filteredHeaders
+  try {
+    const arr = man.match(HEADER_REGEX)
+    const headers = arr.map(current => current.replace('\n', ''))
+    const filteredHeaders = headers.filter(header => header !== 'NAME')
+    return filteredHeaders
+  } catch (err) {
+    if (err.name === 'TypeError') {
+      process.exit(0)
+    }
+  }
 }
 
 export const execMan = async (command: string) => {
@@ -36,6 +42,7 @@ export const execMan = async (command: string) => {
   if (stderr) {
     parseAndHandleError(stderr)
   }
+
   const headers = getHeaders(stdout)
   const manObj = setManObj(stdout, headers)
   const startCasedManObj = keytoStartCase(manObj)
@@ -49,6 +56,5 @@ export const execMan = async (command: string) => {
         [key]: startCasedManObj[key],
       }
     }, {})
-
   return filteredManObj
 }
