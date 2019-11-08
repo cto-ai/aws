@@ -32,12 +32,6 @@ const showPrerunMessage = async () => {
 
 const parseArguments = () => {
   const args: argv = sdk.yargs.argv
-  if (args && args._.length > 1) {
-    sdk.log(`🛑 Unacceptable arguments
-  example:
-  ops run aws [service]`)
-    process.exit(0)
-  }
   if (args._.length === 0 && args.s) {
     sdk.log(`🛑 You must provide a service argument if using -s/--s flag
     example:
@@ -53,14 +47,17 @@ const checkPowerMode = async () => {
       isDone: true,
     }
     track(metadata)
-    const argv = process.argv.slice(2).filter(e => e !== '-p')
+    const argv = process.argv.slice(2).filter(e => {
+      return !(e === '-p' || e === '--powermode')
+    })
+
     await execPowerMode(argv)
   }
 }
 
 const startPrompt = (args: argv) => {
   // checks to see if service flag is set. Passes argument as service if it is set, if not passes as command
-  const service = args._[0] ? args._[0] : ''
+  const service = args._ ? args._.join(' ') : ''
   return args.s
     ? awsPromptLoop(service, '', [])
     : awsPromptLoop('', service, [])
