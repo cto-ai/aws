@@ -1,10 +1,10 @@
-![](https://github.com/cto-ai/aws/tree/master/assets/banner.png)
+![](https://raw.githubusercontent.com/cto-ai/aws/master/assets/banner.png)
 
-# AWS Op
+# AWS
 
-An interactive command line to use the AWS CLI.
+An interactive command line wrapper of the AWS CLI.
 
-![](https://github.com/cto-ai/aws/tree/master/assets/screenshot_cli.png)
+![](https://raw.githubusercontent.com/cto-ai/aws/master/assets/screenshot_cli.png)
 
 ## Requirements
 
