@@ -1,6 +1,10 @@
-# 🚀 CTO.ai - Official Op - AWS 🚀
+![](https://github.com/cto-ai/aws/tree/master/assets/banner.png)
+
+# AWS Op
 
 An interactive command line to use the AWS CLI.
+
+![](https://github.com/cto-ai/aws/tree/master/assets/screenshot_cli.png)
 
 ## Requirements
 
