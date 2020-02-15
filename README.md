@@ -1,6 +1,6 @@
 ![](https://raw.githubusercontent.com/cto-ai/aws/master/assets/banner.png)
 
-# AWS
+# AWS - Interactive CLI
 
 An interactive command line wrapper of the AWS CLI.
 
@@ -8,9 +8,9 @@ An interactive command line wrapper of the AWS CLI.
 
 ## Requirements
 
-To run this or any other Op, install the [Ops Platform.](https://cto.ai/platform).
+To run this or any other Op, install the [Ops Platform](https://cto.ai/platform).
 
-Find information about how to run and build Ops via the [Ops Platform Documentation](https://cto.ai/docs/overview)
+Find information about how to run and build Ops via the [Ops Platform Documentation](https://cto.ai/docs/overview).
 
 This Op also requires AWS credentials to work with your account. Here's what you'll need before running this Op the first time:
 
@@ -27,7 +27,7 @@ To initiate the interactive AWS CLI prompt run:
 ops run aws
 ```
 
-## Available Commands 💡
+## Available Commands
 
 To skip the service selection prompt you can run:
 
@@ -47,33 +47,39 @@ For power users, the Op offers the option to entirely skip interactive prompts, 
 ops run aws [full command] [-p || --powermode]
 ```
 
-## Local Development
+## Local Development / Running from Source
 
-To develop and run the Op from source:
-
-#### 1. Clone the repo:
+**1. Clone the repo:**
 
 ```bash
 git clone <git url>
 ```
 
-#### 2. Navigate into the directory and install dependancies:
+**2. Navigate into the directory and install dependancies:**
 
 ```bash
 cd aws && npm install
 ```
 
-#### 3. Run the Op from your current working directory with:
+**1. Run the Op from your current working directory with:**
 
 ```bash
-  ops run .
+ops run .
 ```
 
 ## Debugging Issues
 
-Use `DEBUG=aws:* ops run aws` in order to run the op in debug mode
+Use the `DEBUG` flag in the terminal to see verbose Op output like so:
 
-When submitting issues or requesting help, be sure to also include the version information output from `ops -v`
+```bash
+DEBUG=aws:* ops run aws
+```
+
+When submitting issues or requesting help, be sure to also include the version information. To get your ops version run:
+
+```bash
+ops -v
+```
 
 ## Resources
 
