@@ -55,7 +55,7 @@ ops run aws [full command] [-p || --powermode]
 git clone <git url>
 ```
 
-**2. Navigate into the directory and install dependancies:**
+**2. Navigate into the directory and install dependencies:**
 
 ```bash
 cd aws && npm install
