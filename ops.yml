@@ -1,6 +1,6 @@
 version: "1"
 commands:
-  - name: aws:1.0.1
+  - name: aws:1.1.0
     description: # Short description for what your op does (required)
       A user-friendly interactive command line user interface to build and run an AWS CLI command
     public: # Determines whether this version of the op is visible to other people
