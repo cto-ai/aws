@@ -16,8 +16,10 @@ This Op also requires AWS credentials to work with your account. Here's what you
 
 - **AWS Access Key Id**: via the [AWS Management Console](https://console.aws.amazon.com/):
   - `AWS Management Console` -> `Security Credentials` -> `Access Keys`
+  - Set Access Key to `AWS_ACCESS_KEY_ID` in team secrets by running `ops secrets:set`
 - **AWS Access Key Secret**: via the [AWS Management Console](https://console.aws.amazon.com/):
   - `AWS Management Console` -> `Security Credentials` -> `Access Keys`
+  - Set Secret Key to `AWS_ACCESS_KEY_SECRET` in team secrets by running `ops secrets:set`
 
 ## Usage
 

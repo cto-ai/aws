@@ -40,7 +40,3 @@ export type AWSConfig = {
   accessKeySecret: string
   region: string
 }
-
-export type Config = {
-  AWS: AWSConfig
-}
