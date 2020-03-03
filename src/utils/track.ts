@@ -1,3 +1,4 @@
+import yargs from 'yargs'
 import { sdk } from '@cto.ai/sdk'
 
 interface metadata {
@@ -9,10 +10,8 @@ interface metadata {
 
 export const track = async (metadata: metadata) => {
   const trackedData = {
-    user: await sdk.user(),
     os: sdk.getHostOS(),
-    isContainer: sdk.isContainer(),
-    command: ['aws', ...sdk.yargs.argv._],
+    command: ['aws', ...yargs.argv._],
     ...metadata,
   }
   if (trackedData.command.length === 1) {
@@ -22,7 +21,7 @@ export const track = async (metadata: metadata) => {
     trackedData['command'] = trackedData.awsHelp
       .split(' ')
       .filter(el => el !== '')
-    trackedData['powerUserArgs'] = ['aws', ...sdk.yargs.argv._]
+    trackedData['powerUserArgs'] = ['aws', ...yargs.argv._]
     delete trackedData.awsHelp
   }
   sdk.track(['track', 'aws'], trackedData)

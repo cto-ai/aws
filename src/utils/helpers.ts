@@ -72,12 +72,19 @@ export const returnNewCommand = async (
   selectedHeader: string
 ) => {
   const cmdArr = filterForCommands(awsManPage[selectedHeader])
+  await ux.print(cmdArr[0])
   return await ux.prompt(fuzzyListPrompt(cmdArr))
 }
 
 // gets user selected arguments in form of ANSI wrapped string[] from prompt and returns a string with their selected options and input value
 export const getSelectedArgvs = async (argvs: argvObj[]): Promise<string> => {
-  const { selectedOptions } = await ux.prompt(cmdArgvListPrompt(argvs))
+  const argvList: string[] = []
+  for (const argv of argvs) {
+    if (argv.name) {
+      argvList.push(argv.name)
+    }
+  }
+  const { selectedOptions } = await ux.prompt(cmdArgvListPrompt(argvList))
   return await argvsInput(selectedOptions, argvs)
 }
 

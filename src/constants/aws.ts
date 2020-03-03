@@ -20,15 +20,4 @@ const regionCodes = {
   'ca-central-1': 'Canada (Central)',
 }
 
-const TOTAL_LENGTH = 18
-
-export const AWS_REGIONS = Object.entries(regionCodes).map(
-  ([code, longName]: [string, string]) => {
-    const nSpaces = Array.from({ length: TOTAL_LENGTH - code.length }).join(' ')
-    return {
-      name: `${code}${nSpaces}${longName}`,
-      value: code,
-      short: code,
-    }
-  }
-)
+export const AWS_REGIONS = Object.keys(regionCodes)

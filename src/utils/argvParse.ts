@@ -2,7 +2,7 @@ import { filterForArgvs, filterForArgv } from './regex'
 import { argvObj, manObj } from '../types/aws'
 import { SYNOPSIS_STR, OPTION_STR } from '../constants/aws'
 import { setOptObj } from './optionParse'
-import * as inquirer from '@cto.ai/inquirer'
+import * as inquirer from 'inquirer'
 
 // refactor to have less repeating funct calls
 export const generateArgvsObj = (awsManPage: manObj): argvObj[] => {

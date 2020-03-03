@@ -1,5 +1,5 @@
-import * as util from 'util'
-import * as childProcess from 'child_process'
+import util from 'util'
+import childProcess from 'child_process'
 import { manObj } from '../types/aws'
 import { HEADER_REGEX } from '../utils/regex'
 import { parseAndHandleError } from '../errors'
@@ -39,10 +39,10 @@ const getHeaders = (man: string): string[] => {
 
 export const execMan = async (command: string) => {
   const { stdout, stderr } = await pExec(`${command} | col -b`)
+
   if (stderr) {
     parseAndHandleError(stderr)
   }
-
   const headers = getHeaders(stdout)
   const manObj = setManObj(stdout, headers)
   const startCasedManObj = keytoStartCase(manObj)

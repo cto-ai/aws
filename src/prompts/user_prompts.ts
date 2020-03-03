@@ -1,79 +1,57 @@
-import { Question, AutoCompleteQuestion } from '@cto.ai/inquirer'
-import { ux } from '@cto.ai/sdk'
+import { ux, Question } from '@cto.ai/sdk'
 import { helpPromptAns } from '../types/prompts'
-import * as fuzzy from 'fuzzy'
 import { argvObj } from '../types/aws'
 import { EDIT_CHOICES } from '../constants/aws'
 
 const { multiBlue } = ux.colors
 
-export const pressEnterToPrompt = (str: string): Question<helpPromptAns>[] => [
-  {
-    type: 'input',
+export const pressEnterToPrompt = (str: string): Question => {
+  return {
+    type: 'confirm',
     name: 'continue',
     message: `\nPress enter to ${str} →`,
-    afterMessage: ' ',
-    transformer: input => ' ',
-  },
-]
+    default: true,
+  }
+}
 
-export const awsHeaderPrompt = (
-  headers: string[]
-): Question<helpPromptAns>[] => [
-  {
+export const awsHeaderPrompt = (headers: string[]): Question<helpPromptAns> => {
+  return {
     type: 'list',
     name: 'selectedHeader',
     message: '\nPlease select the information details you wish to review',
-    afterMessage: '\nInformation has been selected',
     choices: headers,
-  },
-]
+  }
+}
 
 export const fuzzyListPrompt = (
   commandList: string[]
-): AutoCompleteQuestion<helpPromptAns>[] => [
-  {
+): Question<helpPromptAns> => {
+  return {
     type: 'autocomplete',
     name: 'command',
     message: `\nSelect the following aws command ${ux.colors.reset.green('→')}`,
-    source: (answers, input) => {
-      input = input || ''
-      return new Promise(resolve => {
-        const fuzzyResult = fuzzy.filter(input, commandList)
-        resolve(fuzzyResult.map(el => el.original))
-      })
-    },
-    afterMessage: `${ux.colors.reset.green('✓')} Command selected!`,
-  },
-]
-
-export const cmdArgvListPrompt = (
-  argvList: argvObj[]
-): Question<helpPromptAns>[] => {
-  return [
-    {
-      type: 'checkbox',
-      name: 'selectedOptions',
-      message: `This command has these arguments. Please choose the one(s) you would like to set:\n`,
-      choices: argvList,
-      afterMessage: '\nYou have selected: ',
-    },
-  ]
+    choices: commandList,
+  }
 }
 
-export const argvsInputPrompt = (
-  option: argvObj
-): Question<helpPromptAns>[] => [
-  {
+export const cmdArgvListPrompt = (
+  argvList: string[]
+): Question<helpPromptAns> => {
+  return {
+    type: 'checkbox',
+    name: 'selectedOptions',
+    message: `This command has these arguments. Please choose the one(s) you would like to set:\n`,
+    choices: argvList,
+  }
+}
+
+export const argvsInputPrompt = (option: argvObj): Question<helpPromptAns> => {
+  return {
     type: 'input',
     name: 'optValue',
     message: `Please enter the value you want to input for the argument ${option.name}`,
-    afterMessage: 'You have entered: ',
-    afterMessageAppend: ` ${ux.colors.primary('as the value for')} ${
-      option.name
-    }`,
-  },
-]
+  }
+}
 
 export const confirmCommandPrompt = (
   completeCmd: string
