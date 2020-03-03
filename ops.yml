@@ -1,10 +1,10 @@
 version: "1"
 commands:
-  - name: aws:1.1.0
+  - name: aws:1.1.1
     description: # Short description for what your op does (required)
       A user-friendly interactive command line user interface to build and run an AWS CLI command
     public: # Determines whether this version of the op is visible to other people
-      false
+      true
     sdk: "2"
     remote: true
     sourceCodeURL: "https://github.com/cto-ai/aws"
