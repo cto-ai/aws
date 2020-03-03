@@ -72,7 +72,6 @@ export const returnNewCommand = async (
   selectedHeader: string
 ) => {
   const cmdArr = filterForCommands(awsManPage[selectedHeader])
-  await ux.print(cmdArr[0])
   return await ux.prompt(fuzzyListPrompt(cmdArr))
 }
 
