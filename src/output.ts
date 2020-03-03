@@ -62,6 +62,6 @@ export const outputAWS = async (
         break
     }
   } catch (err) {
-    parseAndHandleError(err)
+    parseAndHandleError(JSON.stringify(err, null, 2))
   }
 }

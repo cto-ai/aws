@@ -1,3 +1,4 @@
+import yargs from 'yargs'
 import { sdk, ux } from '@cto.ai/sdk'
 import { asyncPipe } from './utils/asyncPipe'
 import { pressEnterToPrompt } from './prompts/user_prompts'
@@ -12,12 +13,9 @@ const logo = `█▀▀ ▀▀█▀▀ █▀▀█   █▀▀█ ░▀░   
 ▀▀▀ ░░▀░░ ▀▀▀▀   ▀░░▀ ▀▀▀   ▀░░▀ ░▀░▀░ ▀▀▀   ▀▀▀▀ █▀▀▀`
 
 const showPrerunMessage = async () => {
-  const res = await sdk.user().catch(err => console.log(err))
-  const person = res && res.me ? `, ${res.me.username}` : ' there'
-
   const greetingLines = [
     `\n🚀  ${ux.colors.bgRed('CTO.ai AWS OP')} 🚀\n`,
-    `\nHi${person}! Welcome back and thanks for using the tool, if have any questions be sure to reach out to the CTO.ai team, we're always happy to help!`,
+    `\nHi there! Welcome back and thanks for using the tool, if have any questions be sure to reach out to the CTO.ai team, we're always happy to help!`,
     `⚠️  This Op requires some setup. Here's what you'll need:`,
     `\n✅ AWS Access Key ID`,
     `✅ AWS Secret Access Key`,
@@ -31,7 +29,7 @@ const showPrerunMessage = async () => {
 }
 
 const parseArguments = () => {
-  const args: argv = sdk.yargs.argv
+  const args: argv = yargs.argv
   if (args._.length === 0 && args.s) {
     sdk.log(`🛑 You must provide a service argument if using -s/--s flag
     example:
@@ -41,7 +39,7 @@ const parseArguments = () => {
 }
 
 const checkPowerMode = async () => {
-  const args = sdk.yargs.argv
+  const args = yargs.argv
   if (args.p || args.powermode) {
     const metadata = {
       isDone: true,
