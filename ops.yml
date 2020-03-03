@@ -11,20 +11,9 @@ commands:
     run: # Command that is executed when op is started ("npm start", "./start_script.sh", etc.) (required)
       npx ts-node /ops/src/index.ts
     env:
-      # Provide required environment variables for your op; to access, use the platform specific API, e.g. `process.env` for NodeJS
-      # To use environment variables from the Host, use the $ prefix:
-    #src:  Whitelist files and folders to be included in the published op's WORKDIR
-    # - Dockerfile
-    # - src
-    # - package.json
-    # - .dockerignore
-    # - tsconfig.json
     mountCwd: # If set to `true`, binds the host's current working directory to `/cwd`; default value: `false` - working directory `/ops`
       false
-    mountHome: # If set to `true`, binds the host's home directory to `/root`; default value: `false`
-      false
-    # bind: Bind additional volumes; trail the string accordingly to configure permissions for either read-only (:ro) or write (:w) access (example: ~/tmp:/root/tmp will bind lefthand directory in host to righthand directory in ops)
-    # - ~/.ssh:/root/.ssh
+    mountHome: false
     port: # Map ports for your op container
       - 3000:3000
     help: # Configure the output for when your op is run with `op --help` or `op -h`
