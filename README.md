@@ -6,12 +6,6 @@ An interactive command line wrapper of the AWS CLI.
 
 ![](https://raw.githubusercontent.com/cto-ai/aws/master/assets/screenshot_cli.png)
 
-## Notice
-
-Please note that this Op was built with SDK 1 and therefore is currently limited to CLI compatibility.
-
-If you would like to interact with AWS in Slack, please contact us in [our community](https://CTO.ai/community) and we can help you.
-
 ## Requirements
 
 To run this or any other Op, install the [Ops Platform](https://cto.ai/platform).
