@@ -1,21 +1,15 @@
 version: '1'
 commands:
   - name: aws:1.1.2
-    description: # Short description for what your op does (required)
+    description:
       A user-friendly interactive command line user interface to build and run an AWS CLI command
-    public: # Determines whether this version of the op is visible to other people
-      true
+    public: true
     sdk: '2'
     remote: true
     sourceCodeURL: 'https://github.com/cto-ai/aws'
-    run: # Command that is executed when op is started ("npm start", "./start_script.sh", etc.) (required)
-      npx ts-node /ops/src/index.ts
-    env:
-    mountCwd: # If set to `true`, binds the host's current working directory to `/cwd`; default value: `false` - working directory `/ops`
-      false
+    run: npx ts-node /ops/src/index.ts
+    mountCwd: false
     mountHome: false
-    port: # Map ports for your op container
-      - 3000:3000
     help: # Configure the output for when your op is run with `op --help` or `op -h`
       usage: 'all commands and arguments available from the aws cli and are piped through as arguments. i.e. this is possible `ops run aws ec2 reate-vpc`'
       arguments:
