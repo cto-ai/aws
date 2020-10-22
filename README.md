@@ -1,4 +1,4 @@
-![](https://cto.ai/static/oss-banner.git)
+![](https://cto.ai/static/oss-banner.png)
 
 # AWS - Interactive CLI
 
